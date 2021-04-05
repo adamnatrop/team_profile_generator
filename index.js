@@ -18,36 +18,33 @@ async function getManager(){
 
         while(!done){
             let employee = new Employee();
-           employee.name = await inquirer.prompt(employee.getName());
-           employee.id = await inquirer.prompt(employee.getId());
 
-                // employee.name = await inquirer.prompt( 
-                //         {
-                //         type: 'input',
-                //         message: 'Enter Name:',
-                //         name: 'name',
-                // });
+            let nameResultObj = await inquirer.prompt(employee.getName());
+            employee.name = nameResultObj.name;
 
-                // employee.id = await inquirer.prompt( 
-                //         {
-                //         type: 'input',
-                //         message: 'Enter ID Number:',
-                //         name: 'id',
-                // });
-           
-                console.log(employee)
-           // employee.getId();
-            // employee.getEmail()
-            // employee.getRole();
+            let idResultObj = await inquirer.prompt(employee.getId());
+            employee.id = idResultObj.id;
 
-            // if (employee.role == "Manager"){
-            //     var manager = new Manager(employee);
-            //     teamArray.push(manager);
-            //     continue;
-            // } else {
-            //    teamArray.push(employee);
-            // }
-             done = true;
+            let emailResultObj = await inquirer.prompt(employee.getEmail());
+            employee.email = emailResultObj.email;
+
+            let roleResultObj = await inquirer.prompt(employee.getRole());
+            employee.role = roleResultObj.role
+            console.log(employee)
+
+            if (employee.role == 'Manager'){
+                console.log("if tatement fired")
+                var manager = new Manager(employee.id, employee.name, employee.email, '', employee.role);
+                teamArray.push(manager);
+                // continue;
+                console.log(manager)
+                done = true;
+                
+            } else {
+               teamArray.push(employee);
+            }
+             //done = false;
+             console.log(teamArray)
         }
 
 }

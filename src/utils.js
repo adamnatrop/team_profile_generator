@@ -40,6 +40,7 @@ function getRolePrompt(type, message, name){
          type: type,
          message: message,
          name: name,
+         choices: ['Manager','Engineer', 'Intern']
          }
          return rolePrompt;
 }
