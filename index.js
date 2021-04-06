@@ -13,11 +13,47 @@ const teamArray = [];
 // employee.getId();
 
 async function getManager(){
+    
+    let manager = new Manager();
 
-        let done = false  
+    let roleResultObj = await inquirer.prompt(manager.getRole());
+    manager.role = roleResultObj.role
+
+    let nameResultObj = await inquirer.prompt(manager.getName());
+    manager.name = nameResultObj.name;
+
+    let idResultObj = await inquirer.prompt(manager.getId());
+    manager.id = idResultObj.id;
+
+    let emailResultObj = await inquirer.prompt(manager.getEmail());
+    manager.email = emailResultObj.email;
+
+    let officeNumberResultObj = await inquirer.prompt(manager.getOfficeNumber());
+    manager.officeNumber = officeNumberResultObj.officeNumber;
+    
+    teamArray.push(manager);
+
+    getTeamMembers();
+}
+
+
+async function getTeamMembers(){
+    let done = false  
 
         while(!done){
+            
+            addEmployee = await inquirer.prompt(utils.addTeamMember());
+            if (addEmployee.answer === "Yes"){
+               
+            }else {
+                done = true;
+                return done
+            }
+
             let employee = new Employee();
+
+            let roleResultObj = await inquirer.prompt(employee.getRole());
+            employee.role = roleResultObj.role
 
             let nameResultObj = await inquirer.prompt(employee.getName());
             employee.name = nameResultObj.name;
@@ -28,27 +64,30 @@ async function getManager(){
             let emailResultObj = await inquirer.prompt(employee.getEmail());
             employee.email = emailResultObj.email;
 
-            let roleResultObj = await inquirer.prompt(employee.getRole());
-            employee.role = roleResultObj.role
-            console.log(employee)
+            
 
-            if (employee.role == 'Manager'){
-                console.log("if tatement fired")
-                var manager = new Manager(employee.id, employee.name, employee.email, '', employee.role);
-                teamArray.push(manager);
-                // continue;
-                console.log(manager)
-                done = true;
+            if (employee.role == 'Engineer'){
                 
-            } else {
-               teamArray.push(employee);
+                let engineer = new Engineer(employee.id, employee.name, employee.email, '', employee.role);
+                let gitHubResultObj = await inquirer.prompt(engineer.getGithub());
+                engineer.github = gitHubResultObj.github;
+
+                teamArray.push(engineer);
+                
+                
+                
+            } else if (employee.role == 'Intern'){
+                let intern = new Intern(employee.id, employee.name, employee.email, '', employee.role);
+                let schoolResultObj = await inquirer.prompt(intern.getSchool());
+                intern.school = schoolResultObj.school;
+                
+                teamArray.push(intern);
+               
             }
-             //done = false;
+            
              console.log(teamArray)
         }
-
-}
-
+};
 
 getManager()
 

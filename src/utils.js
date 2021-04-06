@@ -40,13 +40,40 @@ function getRolePrompt(type, message, name){
          type: type,
          message: message,
          name: name,
-         choices: ['Manager','Engineer', 'Intern']
+         choices: ['Engineer', 'Intern']
          }
          return rolePrompt;
 }
 
+function getManagerRolePrompt(type, message, name){
+ 
+    let rolePrompt =
+        
+        {
+         type: type,
+         message: message,
+         name: name,
+         choices: ['Manager']
+         }
+         return rolePrompt;
+}
+
+function addTeamMember(){
+
+    let employeeOptions = 
+
+        {
+            type: 'list',
+            message: 'Would you like to add another team member?',
+            name: 'answer',
+            choices: ['Yes', 'No']
+        }
+        return employeeOptions
+}
 
 module.exports = {
     getPrompt,
-    getRolePrompt
+    getRolePrompt,
+    getManagerRolePrompt,
+    addTeamMember
 }
