@@ -39,19 +39,27 @@ function finishedHTML(profileCards){
 }
 
 function createProfileHTMLCards(profile) {
+    let icon = '';
+    if (profile.role === 'Manager'){
+        icon = 'fas fa-mug-hot fa-2x'
+    } else if (profile.role === 'Engineer'){
+        icon = 'fas fa-glasses fa-2x'
+    } else if (profile.role === 'Intern'){
+        icon = 'fas fa-user-graduate fa-2x'
+    }
+    
     let profileHTML = 
     `
     <div id="employeeCard" class="mb-4 col-sm col-md-4">
         <header>
             <h2>${profile.name}</h2>
-            <span><i class=""></i></span><h3>${profile.role}</h3>
+            <span><i class="${icon}"></i></span><h3>${profile.role}</h3>
             <div class="card">
                 <ul class="list-group">
                     <li class="list-group-item">${profile.id}</li>
                     <li class="list-group-item">${profile.email}</li>
                     <li class="list-group-item">${profile.specialAttr}</li>
-                    <li class="list-group-item"></li>
-                    <li class="list-group-item"></li>
+                    
                 </ul>
             </div>
         </header>

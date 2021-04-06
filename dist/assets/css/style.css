@@ -35,7 +35,7 @@ h3 {
     padding-bottom: 5rem;
 }
 
-.fa-mug-hot {
+.fa-mug-hot, .fa-glasses, .fa-user-graduate {
     color: var(--white)
 }
 #employeeCard {
