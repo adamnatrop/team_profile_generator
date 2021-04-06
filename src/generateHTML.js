@@ -41,11 +41,11 @@ function finishedHTML(profileCards){
 function createProfileHTMLCards(profile) {
     let icon = '';
     if (profile.role === 'Manager'){
-        icon = 'fas fa-mug-hot fa-2x'
+        icon = 'fas fa-mug-hot '
     } else if (profile.role === 'Engineer'){
-        icon = 'fas fa-glasses fa-2x'
+        icon = 'fas fa-glasses '
     } else if (profile.role === 'Intern'){
-        icon = 'fas fa-user-graduate fa-2x'
+        icon = 'fas fa-user-graduate '
     }
     
     let profileHTML = 
@@ -53,7 +53,7 @@ function createProfileHTMLCards(profile) {
     <div id="employeeCard" class="mb-4 col-sm col-md-4">
         <header>
             <h2>${profile.name}</h2>
-            <span><i class="${icon}"></i></span><h3>${profile.role}</h3>
+            <h3><span class="${icon}"></span> ${profile.role}</h3>
             <div class="card">
                 <ul class="list-group">
                     <li class="list-group-item">${profile.id}</li>
