@@ -40,17 +40,21 @@ function finishedHTML(profileCards){
 
 function createProfileHTMLCards(profile) {
     let icon = '';
+    let order = '';
     if (profile.role === 'Manager'){
         icon = 'fas fa-mug-hot '
+        order = 'order-first'
     } else if (profile.role === 'Engineer'){
         icon = 'fas fa-glasses '
+        order = ' ';
     } else if (profile.role === 'Intern'){
         icon = 'fas fa-user-graduate '
+        order = 'order-last'
     }
     
     let profileHTML = 
     `
-    <div id="employeeCard" class="mb-4 col-sm col-md-4">
+    <div id="employeeCard" class="mb-4 col-sm col-md-4 ${order}">
         <header>
             <h2>${profile.name}</h2>
             <h3><span class="${icon}"></span> ${profile.role}</h3>
@@ -58,8 +62,7 @@ function createProfileHTMLCards(profile) {
                 <ul class="list-group">
                     <li class="list-group-item">${profile.id}</li>
                     <li class="list-group-item">${profile.email}</li>
-                    <li class="list-group-item">${profile.specialAttr}</li>
-                    
+                    <li class="list-group-item">${profile.specialAttr}</li> 
                 </ul>
             </div>
         </header>

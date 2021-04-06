@@ -85,7 +85,7 @@ async function getTeamMembers(){
                
             }
             
-             console.log(teamArray)
+             
         }
         
     processHTML();
