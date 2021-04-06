@@ -4,13 +4,12 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const inquirer = require("inquirer");
 const utils = require("./src/utils");
+const generateHTML = require("./src/generateHTML");
 
 
 const teamArray = [];
 
-// var employee = new Employee();
-// employee.getName();
-// employee.getId();
+
 
 async function getManager(){
     
@@ -23,13 +22,13 @@ async function getManager(){
     manager.name = nameResultObj.name;
 
     let idResultObj = await inquirer.prompt(manager.getId());
-    manager.id = idResultObj.id;
+    manager.id = `ID: ${idResultObj.id}`;
 
     let emailResultObj = await inquirer.prompt(manager.getEmail());
-    manager.email = emailResultObj.email;
+    manager.email = `Email: ${emailResultObj.email}`;
 
     let officeNumberResultObj = await inquirer.prompt(manager.getOfficeNumber());
-    manager.officeNumber = officeNumberResultObj.officeNumber;
+    manager.specialAttr = `Office Number: ${officeNumberResultObj.officeNumber}`;
     
     teamArray.push(manager);
 
@@ -47,7 +46,7 @@ async function getTeamMembers(){
                
             }else {
                 done = true;
-                return done
+                continue
             }
 
             let employee = new Employee();
@@ -59,10 +58,10 @@ async function getTeamMembers(){
             employee.name = nameResultObj.name;
 
             let idResultObj = await inquirer.prompt(employee.getId());
-            employee.id = idResultObj.id;
+            employee.id = `ID: ${idResultObj.id}`;
 
             let emailResultObj = await inquirer.prompt(employee.getEmail());
-            employee.email = emailResultObj.email;
+            employee.email = `Email: ${emailResultObj.email}`;
 
             
 
@@ -70,7 +69,7 @@ async function getTeamMembers(){
                 
                 let engineer = new Engineer(employee.id, employee.name, employee.email, '', employee.role);
                 let gitHubResultObj = await inquirer.prompt(engineer.getGithub());
-                engineer.github = gitHubResultObj.github;
+                engineer.specialAttr = `Github: ${gitHubResultObj.github}`;
 
                 teamArray.push(engineer);
                 
@@ -79,7 +78,7 @@ async function getTeamMembers(){
             } else if (employee.role == 'Intern'){
                 let intern = new Intern(employee.id, employee.name, employee.email, '', employee.role);
                 let schoolResultObj = await inquirer.prompt(intern.getSchool());
-                intern.school = schoolResultObj.school;
+                intern.specialAttr = `School: ${schoolResultObj.school}`;
                 
                 teamArray.push(intern);
                
@@ -87,7 +86,26 @@ async function getTeamMembers(){
             
              console.log(teamArray)
         }
+        
+    processHTML();
 };
+
+
+
+
+function processHTML(){
+
+    let htmlProfileArray = generateHTML.itterateProfiles(teamArray);
+    let profilesHTML = htmlProfileArray.join('');
+    let finishedHTML = generateHTML.finishedHTML(profilesHTML);
+    console.log(finishedHTML);
+
+}
+
+
+
+
+
 
 getManager()
 

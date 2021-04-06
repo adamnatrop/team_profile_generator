@@ -1,0 +1,43 @@
+:root {
+    --primary-color:#071E22;
+    --secondary-color: #1D7874;
+    --action-color: #EE2E31;
+    --focus-color: #679289;
+    --light: #F4C095;
+    --black: #040514;
+    --white: #fff;
+}
+
+header {
+    background-color: var(--primary-color);
+}
+h1 {
+    text-align: center;
+    color: var(--light);
+    padding: 1.5rem;
+}
+
+h2, h3 {
+    color: var(--light);
+    padding-left: 1rem;
+    padding-top: .5rem;
+
+}
+
+h3 {
+    padding-bottom: 1rem;
+}
+
+.card {
+    background-color: var(--secondary-color);
+    padding: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.fa-mug-hot {
+    color: var(--white)
+}
+#employeeCard {
+    max-width: 500px;
+}
