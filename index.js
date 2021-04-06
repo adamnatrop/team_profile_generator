@@ -1,3 +1,4 @@
+const fs = require("fs");
 const Employee = require("./lib/employee");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
@@ -98,12 +99,17 @@ function processHTML(){
     let htmlProfileArray = generateHTML.itterateProfiles(teamArray);
     let profilesHTML = htmlProfileArray.join('');
     let finishedHTML = generateHTML.finishedHTML(profilesHTML);
-    console.log(finishedHTML);
+    
+    writeHTMLToFile(finishedHTML);
 
 }
 
 
+function writeHTMLToFile(html){
+    fs.writeFile("./dist/index.html", html, (err) =>
+    err ? console.error(err) : console.log("Your Team Profile Page has been created. Launch index.html from the dist folder to view your team!"))
 
+}
 
 
 
