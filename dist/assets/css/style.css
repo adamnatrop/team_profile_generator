@@ -3,7 +3,7 @@
     --secondary-color: #1D7874;
     --action-color: #EE2E31;
     --focus-color: #679289;
-    --light: #F4C095;
+    --light: #F7F9F7;
     --black: #040514;
     --white: #fff;
 }
@@ -40,4 +40,5 @@ h3 {
 }
 #employeeCard {
     max-width: 500px;
+    min-width: 300px;
 }
