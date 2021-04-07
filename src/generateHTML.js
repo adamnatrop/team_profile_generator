@@ -1,5 +1,5 @@
 
-
+// Adds completed profile html section to body of completed HTML
 function finishedHTML(profileCards){
     const indexHTML = 
     `
@@ -38,6 +38,7 @@ function finishedHTML(profileCards){
     return indexHTML
 }
 
+// Generates the profile HTML sections with custom data
 function createProfileHTMLCards(profile) {
     let icon = '';
     let order = '';
@@ -75,6 +76,7 @@ function createProfileHTMLCards(profile) {
     return profileHTML
 }
 
+// uses each array item to generate profile html cards
 function itterateProfiles(array){
     
     const htmlArray = [];

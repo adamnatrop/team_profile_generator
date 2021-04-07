@@ -11,11 +11,11 @@ const generateHTML = require("./src/generateHTML");
 const teamArray = [];
 
 
-
+// starting function prompts manager info
 async function getManager(){
     
     let manager = new Manager();
-
+    // calls class specific question stores the results into the new class object
     let roleResultObj = await inquirer.prompt(manager.getRole());
     manager.role = roleResultObj.role
 
@@ -30,26 +30,26 @@ async function getManager(){
 
     let officeNumberResultObj = await inquirer.prompt(manager.getOfficeNumber());
     manager.specialAttr = officeNumberResultObj.officeNumber;
-    
+    // pushes the manager object into the team array
     teamArray.push(manager);
 
     getTeamMembers();
 }
 
-
+// loop function to generate each employee profile for Engineer and Intern Class
 async function getTeamMembers(){
     let done = false  
 
         while(!done){
-            
+            // starting prompt to add team member or be finished
             addEmployee = await inquirer.prompt(utils.addTeamMember());
             if (addEmployee.answer === "Yes"){
-               
+            // if No is selected it completes the loop and moves to the processHTML function   
             }else {
                 done = true;
                 continue
             }
-
+            // Employee class prompts and stores results
             let employee = new Employee();
 
             let roleResultObj = await inquirer.prompt(employee.getRole());
@@ -65,7 +65,7 @@ async function getTeamMembers(){
             employee.email = emailResultObj.email;
 
             
-
+            // Engineer and Intern Class specific prompts
             if (employee.role == 'Engineer'){
                 
                 let engineer = new Engineer(employee.id, employee.name, employee.email, '', employee.role);
@@ -93,7 +93,7 @@ async function getTeamMembers(){
 
 
 
-
+// uses generateHTML.js to create the HTML file
 function processHTML(){
 
     let htmlProfileArray = generateHTML.itterateProfiles(teamArray);
@@ -104,7 +104,7 @@ function processHTML(){
 
 }
 
-
+// writes the HTML file - Application Complete
 function writeHTMLToFile(html){
     fs.writeFile("./dist/index.html", html, (err) =>
     err ? console.error(err) : console.log("Your Team Profile Page has been created. Launch index.html from the dist folder to view your team!"))
