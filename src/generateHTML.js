@@ -44,12 +44,15 @@ function createProfileHTMLCards(profile) {
     if (profile.role === 'Manager'){
         icon = 'fas fa-mug-hot '
         order = 'order-first'
+        link = `Office Number: ${profile.specialAttr}`
     } else if (profile.role === 'Engineer'){
         icon = 'fas fa-glasses '
         order = ' ';
+        link = `Github: <a href="https://github.com/${profile.specialAttr}" target="_blank">${profile.specialAttr}</a>`
     } else if (profile.role === 'Intern'){
         icon = 'fas fa-user-graduate '
         order = 'order-last'
+        link = `School: ${profile.specialAttr}`
     }
     
     let profileHTML = 
@@ -60,9 +63,9 @@ function createProfileHTMLCards(profile) {
             <h3><span class="${icon}"></span> ${profile.role}</h3>
             <div class="card">
                 <ul class="list-group">
-                    <li class="list-group-item">${profile.id}</li>
-                    <li class="list-group-item">${profile.email}</li>
-                    <li class="list-group-item">${profile.specialAttr}</li> 
+                    <li class="list-group-item">ID: ${profile.id}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${profile.email}">${profile.email}</a></li>
+                    <li class="list-group-item">${link}</li> 
                 </ul>
             </div>
         </header>

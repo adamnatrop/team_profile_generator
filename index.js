@@ -23,13 +23,13 @@ async function getManager(){
     manager.name = nameResultObj.name;
 
     let idResultObj = await inquirer.prompt(manager.getId());
-    manager.id = `ID: ${idResultObj.id}`;
+    manager.id = idResultObj.id;
 
     let emailResultObj = await inquirer.prompt(manager.getEmail());
-    manager.email = `Email: ${emailResultObj.email}`;
+    manager.email = emailResultObj.email;
 
     let officeNumberResultObj = await inquirer.prompt(manager.getOfficeNumber());
-    manager.specialAttr = `Office Number: ${officeNumberResultObj.officeNumber}`;
+    manager.specialAttr = officeNumberResultObj.officeNumber;
     
     teamArray.push(manager);
 
@@ -59,10 +59,10 @@ async function getTeamMembers(){
             employee.name = nameResultObj.name;
 
             let idResultObj = await inquirer.prompt(employee.getId());
-            employee.id = `ID: ${idResultObj.id}`;
+            employee.id = idResultObj.id;
 
             let emailResultObj = await inquirer.prompt(employee.getEmail());
-            employee.email = `Email: ${emailResultObj.email}`;
+            employee.email = emailResultObj.email;
 
             
 
@@ -70,7 +70,7 @@ async function getTeamMembers(){
                 
                 let engineer = new Engineer(employee.id, employee.name, employee.email, '', employee.role);
                 let gitHubResultObj = await inquirer.prompt(engineer.getGithub());
-                engineer.specialAttr = `Github: ${gitHubResultObj.github}`;
+                engineer.specialAttr = gitHubResultObj.github;
 
                 teamArray.push(engineer);
                 
@@ -79,7 +79,7 @@ async function getTeamMembers(){
             } else if (employee.role == 'Intern'){
                 let intern = new Intern(employee.id, employee.name, employee.email, '', employee.role);
                 let schoolResultObj = await inquirer.prompt(intern.getSchool());
-                intern.specialAttr = `School: ${schoolResultObj.school}`;
+                intern.specialAttr = schoolResultObj.school;
                 
                 teamArray.push(intern);
                
